@@ -31,6 +31,14 @@ app.get('/google/callback',
     res.redirect('/success');
 });
 
+app.get("/logout", (req, res) => {
+  req.logout(req.user, err => {
+    if(err) return next(err);
+    req.session=null;
+    res.redirect("/");
+  });
+});
+
 
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`)
